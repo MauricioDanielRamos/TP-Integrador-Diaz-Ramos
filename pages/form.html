@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Formulario</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./../css/style.css">
+</head>
+<body class="contact">
+    <header class="header">
+        <nav class="nav">
+            <a class="navegador" href="./../index.html">Inicio</a>
+            <a class="navegador" href="./productos.html">Productos</a>
+            <a class="navegador" href="./form.html">Contacto</a>
+        </nav>
+    </header>
+    <div class="div-title-main" >
+        <h1 class="title-main">SUPERMERCADO SRL</h1>
+    </div>
+    <div>
+        <h2 class="sub-title-form">Contactanos</h2>
+    </div>
+    <div>
+        <form name="form" action="" class="form">
+            <section class="section-data">
+                <label for="nombre" class="section-data-label">Nombre:</label>
+                <input id="nombre" class="section-data-input" type="text" minlength="2" placeholder="Ej: Juan" required>
+                <label for="apellido" class="section-data-label">Apellido:</label>
+                <input id="apellido" class="section-data-input" type="text" minlength="2" placeholder="Ej: Perez" required>
+                <label for="telefono" class="section-data-label">Telefono:</label>
+                <input id="telefono" class="section-data-input" type="tel" minlength="10" pattern="[0-9]{10,}" placeholder="Ej: 1123456789. Mínimo 10 números" required>
+                <label for="email" class="section-data-label">e-mail:</label>
+                <input id="email" class="section-data-input" type="email" autocomplete="off" minlength="2" placeholder="Ej: mi@email.com" required>
+                <!--autocomplete = "off" se agrego para solucionar los problemas que me marcaba el navegador-->
+            </section>
+            <section class="section-data">
+                <label for="textarea" class="section-data-label">Mensaje:</label>
+                <textarea name="" id="textarea" class="section-data-textarea" rows="13" placeholder="Escriba aquí su mensaje. Mínimo 10 caracteres" minlength="10" required></textarea>
+            </section>
+            <section>
+                <button id="send" class="send">Enviar</button>
+            </section>
+        </form>
+        <div>
+            <h4>Datos de contacto</h4>
+            <p>Direccion: Av. del Libertador 555</p>
+            <p>Localidad: Olavarría</p>
+            <p>Telefono: 2284-556677</p>
+            <p>Email: supermercadosrl@gmail.com</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <p class="contact-data">Av. del Libertador 555 - Olavarría - 2284-556677</p>
+        <p class="footer-p">Desarrollado por Diaz-Ramos</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="./../js/form.js"></script>
+</body>
+</html>
