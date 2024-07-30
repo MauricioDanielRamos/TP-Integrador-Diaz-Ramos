@@ -11,23 +11,29 @@ let arrStock=[10,5,6,8,7,10,3,4,5,6];
 let alertaMostrada = false;
 setTimeout(function(){
     if (!alertaMostrada) {
-        alert("No te olvides de visitar nuestras ofertas !!!!!");
+        Swal.fire({
+            title: "No te vayas sin ver nuestras ofertas!!!",
+            footer: '<a href="./pages/productos.html">Ofertas</a>'
+        });
         alertaMostrada = true; // Actualizamos la bandera para indicar que la alerta ya se mostró
     }
-}, 35000);
+}, 5000);
 /* Si lo dejo asi, cada 15 segundos se muestra el alerta (re molesto) por eso use el de arriba.
     setTimeout(function(){
         alert(`No te olvides de contactarnos !!!!! `);
         }, 15000);
 */
 /*Funcion para mostrar alerta 10 segundos despues de ingresar a la página*/
-let intervalo = 10;
+let intervalo = 2;
 let i = intervalo;
 function cuentaRegre(){
     let intervaloInt = setInterval(function() {
         if (i == 0) {
             clearInterval(intervaloInt); // limpio intervalo
-            alert("No olvides completar el formulario de contacto!!");
+            Swal.fire({
+                title: "No te olvides de completar el formulario!!!",
+                footer: '<a href="./pages/form.html">Formulario de contacto</a>'
+            });
         }else {
             i--;
         }
@@ -53,15 +59,34 @@ function llenarListaPrecios(arrPrecios, precios) {
 }
 llenarListaPrecios(arrPrecios, precios);
 
-/*Funcion para llenar stock en el atributo "max"*/
+/*Funcion para llenar stock en el atributo "max" y validar el atributo "min"*/
 let input = document.querySelectorAll("input");
 function controlStock(arrStock, input) {
     for (let i = 0; i < arrStock.length; i++) {
         input[i].max = arrStock[i];
+        input[i].min = 0;
+        /*if(arrStock[i]=0){
+            document.querySelectorAll(input).classList.add="No hay stock";    // VER COMO HACER ESTO!!!!
+        }*/
     }
 }
 controlStock(arrStock, input);
 //console.log(arrStock);
+
+function mostrarAlertaCero() {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La cantidad a ingresar debe ser mayor a 0!"
+    });
+}
+function mostrarAlertaStock() {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No hay stock!"
+    });
+}
 
 /*Funcion para comprar, validar stock, sumar y multiplicar items agregados*/
 document.querySelector("button").addEventListener("click", () => {
@@ -72,8 +97,10 @@ document.querySelector("button").addEventListener("click", () => {
         if (cantidad >= 0 && (arrStock[i] - cantidad) >= 0) {   /*Valida que cantidad sea mayor o igual a 0 y TAMBIEN que el máximo de stock menos cantidad sea mayor o igual a 0*/
             arrStock[i] -= cantidad; // Actualiza el stock después de la compra
             total += cantidad * arrPrecios[i]; //Acumula la totalidad de la compra
-        } else {
-            alert("Ingrese una cantidad mayor a cero o no hay suficiente stock");
+        } else if(arrStock[i]<0){
+            mostrarAlertaCero();
+            } else {
+                mostrarAlertaStock();
         }
     }
     //Agregue una validacion que al no haber compra, el total quede vacio, en vez de mostrarme un 0.
@@ -113,5 +140,5 @@ botonsuma.forEach(ele=>ele.addEventListener ("click", (e)=>{
 
 */
 
-/*Esto no recuerdo porque lo puse aca*/
+/*Esto no recuerdo porque lo puse aca*/ /*es para cambiar la rutaaaa!!!!*/
 /*window.location.href = "index.html" */ 
